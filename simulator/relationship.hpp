@@ -5,10 +5,19 @@
 #pragma once
 
 #include "character.hpp"
+#include "misc.hpp"
+
+#include <vector>
 
 class Character;
 
 class Relationship {
+    public:
     Character * target;
-    int opinion;
+    std::vector<Justified<int>> opinions;
+
+    Relationship(Character * target);
+
+    void addOpinion(int value, std::string justification);
+    int getTotalOpinion(Character * target);
 };

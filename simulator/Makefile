@@ -8,48 +8,35 @@ CXX = g++
 CXXFLAGS = -g
 
 ################################################################################
-#
-# main
-#	simulator
-# 		report
-# 			setting
-# 			event
-#			outcome
-# 			misc
-#		character
-#			relationship
-#			misc
-#		misc
-#
-################################################################################
 
-MAIN_DEPS = main.o simulator.o report.o character.o misc.o event.o outcome.o
+MAIN_DEPS = relationship.o misc.o outcome.o character.o simulator.o event.o main.o report.o 
 main: $(MAIN_DEPS)
 	$(CXX) $(CXXFLAGS) -o bin/main.out $(MAIN_DEPS)
 	@echo "-----------------"
-
-main.o: main.cpp
-	$(CXX) $(CXXFLAGS) -c main.cpp
-
-simulator.o: simulator.cpp report.hpp character.hpp misc.hpp
+relationship.o: relationship.cpp relationship.hpp character.hpp misc.hpp
+	$(CXX) $(CXXFLAGS) -c relationship.cpp
+misc.o: misc.cpp misc.hpp
+	$(CXX) $(CXXFLAGS) -c misc.cpp
+outcome.o: outcome.cpp outcome.hpp
+	$(CXX) $(CXXFLAGS) -c outcome.cpp
+character.o: character.cpp character.hpp relationship.hpp misc.hpp
+	$(CXX) $(CXXFLAGS) -c character.cpp
+simulator.o: simulator.cpp simulator.hpp report.hpp setting.hpp event.hpp \
+ outcome.hpp character.hpp relationship.hpp misc.hpp
 	$(CXX) $(CXXFLAGS) -c simulator.cpp
-
-REPORT_DEPS = report.cpp report.hpp setting.hpp event.hpp outcome.hpp misc.hpp
-report.o: $(REPORT_DEPS)
+event.o: event.cpp event.hpp
+	$(CXX) $(CXXFLAGS) -c event.cpp
+main.o: main.cpp simulator.hpp report.hpp setting.hpp event.hpp \
+ outcome.hpp character.hpp relationship.hpp misc.hpp
+	$(CXX) $(CXXFLAGS) -c main.cpp
+report.o: report.cpp report.hpp setting.hpp event.hpp outcome.hpp \
+ misc.hpp
 	$(CXX) $(CXXFLAGS) -c report.cpp
 
-character.o: character.hpp relationship.hpp misc.hpp
-	$(CXX) $(CXXFLAGS) -c character.cpp
-
-misc.o: misc.hpp misc.cpp
-	$(CXX) $(CXXFLAGS) -c misc.cpp
-
-event.o: event.hpp event.cpp
-	$(CXX) $(CXXFLAGS) -c event.cpp
-
-outcome.o: outcome.hpp outcome.cpp
-	$(CXX) $(CXXFLAGS) -c outcome.cpp
-
+################################################################################
+# used to generate a new dependency tree
+gen:
+	@clear && python3 dependency.py
 ################################################################################
 # used to clear excess files
 clear:

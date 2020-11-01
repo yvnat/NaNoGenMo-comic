@@ -20,7 +20,7 @@ class Simulator {
 
     Simulator();
     ~Simulator();
-    
+
     Report * simulateTurn();
 
     private:
