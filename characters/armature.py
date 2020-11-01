@@ -2,21 +2,6 @@
 # NaNoGenMo 2020 - Hoplites Comic - yvnat
 # creates a posable character from various limb parts
 
-"""
-TODO
-
-finish integrating json with save
-
-make body.load_pose_from_json() function that loads pose from json
-
-slightly change pose loading function to correctly handle having more children than are described in the json
-
-do load pose from file
-
-give poses names
-
-"""
-
 ################################################################################
 from math import sin, cos, pi
 import math
