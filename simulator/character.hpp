@@ -17,4 +17,5 @@ class Character {
     std::vector<Relationship *> relationships;
 
     Character();
+    ~Character();
 };

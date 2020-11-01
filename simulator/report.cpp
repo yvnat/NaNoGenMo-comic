@@ -19,6 +19,14 @@ Report::Report(TerrainType terrain, ActionType action,
     PRINT("Constructed Report");
 }
 
+Report:~Report() {
+    delete event;
+    for (int i = outcomes.size()-1; i >= 0; --i) {
+        delete outcomes[i]
+    }
+    PRINT("Destroyed Report");
+}
+
 void Report::debugPrint() {
     cout << "--Report " << this << "--\n";
     cout << "Terrain: " << terrain << "\n";

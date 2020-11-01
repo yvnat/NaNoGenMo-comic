@@ -11,3 +11,10 @@ Character::Character() {
     this->relationships = {};
     PRINT("Constructed character " + name);
 }
+
+Character::~Character() {
+    for (int i = relationships.size()-1; i >= 0; --i) {
+        delete relationships[i]
+    }
+    PRINT("Destroyed character " + name);
+}
