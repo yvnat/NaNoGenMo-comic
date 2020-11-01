@@ -12,6 +12,7 @@
 
 class Report {
     public:
+    
     TerrainType terrain;
     ActionType action;
     Event * event;

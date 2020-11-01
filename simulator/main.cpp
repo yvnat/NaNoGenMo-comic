@@ -2,7 +2,7 @@
 // NaNoGenMo 2020 - Hoplites Comic - yvnat
 // 
 
-#include "report.hpp"
+#include "simulator.hpp"
 
 #include <iostream>
 
@@ -12,5 +12,6 @@ int main(int argc, char const *argv[]) {
     cout << "main.cpp\n";
     Report r = Report();
     r.test();
+    Simulator s = Simulator();
     return 0;
 }

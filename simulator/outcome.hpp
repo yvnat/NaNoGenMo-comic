@@ -6,7 +6,7 @@
 
 enum OutcomeType {
     RELATIONSHIP_CHANGE,
-    DISCONTENT_CHANGE,
+    MORALE_CHANGE,
     SUPPLIES_CHANGE,
 };
 
