@@ -19,22 +19,24 @@ Report::Report(TerrainType terrain, ActionType action,
     PRINT("Constructed Report");
 }
 
-Report:~Report() {
+Report::~Report() {
     delete event;
     for (int i = outcomes.size()-1; i >= 0; --i) {
-        delete outcomes[i]
+        delete outcomes[i];
     }
     PRINT("Destroyed Report");
 }
 
 void Report::debugPrint() {
+    string sTerrain[] = {"HILLS","FIELDS","FORESTS"};
+    string sAction[] = {"MARCHING","CAMPING"};
     cout << "--Report " << this << "--\n";
-    cout << "Terrain: " << terrain << "\n";
-    cout << "Action: " << action << "\n";
+    cout << "Terrain: " << sTerrain[terrain] << "\n";
+    cout << "Action: " << sAction[action] << "\n";
     cout << "Event: " << event->toString() << "\n";
     cout << "Outcomes: \n";
     for (int i = 0; i < outcomes.size(); ++i) {
-        cout << "    " << outcomes[i] << "\n";
+        cout << "    " << outcomes[i]->toString() << "\n";
     }
     cout << "--------------\n";
 }

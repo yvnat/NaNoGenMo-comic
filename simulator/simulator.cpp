@@ -9,6 +9,12 @@ using namespace std;
 
 Simulator::Simulator() {
     //temp
+    this->currentTerrain = TerrainType::FIELDS;
+    this->currentAction = ActionType::MARCHING;
+    this->characters = {};
+    this->history = {};
+    this->morale = 4;
+    this->supplies = 5;
     PRINT("Constructed simulator");
 }
 
@@ -60,11 +66,11 @@ vector<Outcome *> Simulator::resolveEvent(Event * event) {
             outcomes.push_back(new Outcome(OutcomeType::SUPPLIES_CHANGE));
             outcomes.push_back(new Outcome(OutcomeType::MORALE_CHANGE));
         } else {
-            new Outcome(OutcomeType::MORALE_CHANGE);
+            outcomes.push_back(new Outcome(OutcomeType::MORALE_CHANGE));
         }
     }
     if (event->type == EventType::TALK) {
-        new Outcome(OutcomeType::RELATIONSHIP_CHANGE);
+        outcomes.push_back(new Outcome(OutcomeType::RELATIONSHIP_CHANGE));
     }
     return outcomes;
 }

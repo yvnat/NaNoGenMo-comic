@@ -4,6 +4,8 @@
 
 #pragma once
 
+#include <string>
+
 enum OutcomeType {
     RELATIONSHIP_CHANGE,
     MORALE_CHANGE,
@@ -15,6 +17,8 @@ class Outcome {
     OutcomeType type;
 
     Outcome(OutcomeType type);
+
+    std::string toString();
 };
 
 //and many child classes for the different outcome types

@@ -11,5 +11,6 @@ Event::Event(EventType type) {
 }
 
 string Event::toString() {
-    return to_string(type);
+    string sEnum[] = {"TALK","ATTACKED"};
+    return sEnum[type];
 }
