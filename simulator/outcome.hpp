@@ -11,7 +11,10 @@ enum OutcomeType {
 };
 
 class Outcome {
+    public:
     OutcomeType type;
+
+    Outcome(OutcomeType type);
 };
 
 //and many child classes for the different outcome types

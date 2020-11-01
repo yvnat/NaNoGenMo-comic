@@ -12,6 +12,9 @@
 class Relationship;
 
 class Character {
+    public:
     std::string name;
     std::vector<Relationship *> relationships;
+
+    Character();
 };

@@ -19,11 +19,13 @@ class Simulator {
     std::vector<Report *> history;
 
     Simulator();
+    ~Simulator();
+    
     Report * simulateTurn();
 
     private:
     Event * getNextEvent();
     std::vector<Outcome *> resolveEvent(Event * event);
     Report * generateReport(TerrainType terrain, ActionType action, 
-                            Event * event, std::vector<Outcome *> outcomes));
+                            Event * event, std::vector<Outcome *> outcomes);
 };

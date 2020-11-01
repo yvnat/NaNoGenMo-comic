@@ -21,5 +21,5 @@ class Report {
     Report(TerrainType terrain, ActionType action, 
            Event * event, std::vector<Outcome *> outcomes);
 
-    void test();
+    void debugPrint();
 };

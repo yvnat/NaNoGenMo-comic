@@ -9,9 +9,15 @@
 using namespace std;
 
 int main(int argc, char const *argv[]) {
-    cout << "main.cpp\n";
-    Report r = Report();
-    r.test();
     Simulator s = Simulator();
+    s.simulateTurn();
+    s.simulateTurn();
+    s.simulateTurn();
+    s.simulateTurn();
+    s.simulateTurn();
+    s.simulateTurn();
+    for (int i = 0; i < s.history.size(); ++i) {
+        s.history[i]->debugPrint();
+    }
     return 0;
 }

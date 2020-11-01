@@ -4,11 +4,18 @@
 
 #pragma once
 
+#include <string>
+
 enum EventType {
     TALK,
     ATTACKED
 };
 
 class Event {
+    public:
     EventType type;
+
+    Event(EventType type);
+
+    std::string toString();
 };
