@@ -16,10 +16,14 @@ class Simulator {
     int supplies;   //range 0-5
     int morale;     //range 0-5
     std::vector<Character *> characters;
-    
     std::vector<Report *> history;
 
     Simulator();
-
     Report * simulateTurn();
+
+    private:
+    Event * getNextEvent();
+    std::vector<Outcome *> resolveEvent(Event * event);
+    Report * generateReport(TerrainType terrain, ActionType action, 
+                            Event * event, std::vector<Outcome *> outcomes));
 };

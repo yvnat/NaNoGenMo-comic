@@ -18,5 +18,8 @@ class Report {
     Event * event;
     std::vector<Outcome *> outcomes;
 
+    Report(TerrainType terrain, ActionType action, 
+           Event * event, std::vector<Outcome *> outcomes);
+
     void test();
 };
