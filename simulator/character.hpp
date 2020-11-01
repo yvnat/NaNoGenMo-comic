@@ -18,4 +18,7 @@ class Character {
 
     Character();
     ~Character();
+
+    private:
+    std::vector<std::string> loadNamesFromFile(std::string filename);
 };
