@@ -24,8 +24,17 @@ class Simulator {
     Report * simulateTurn();
 
     private:
+    /* ----- Misc ----------------------------------------------------------- */
+    Character * getCommander(); //returns the character assigned as Comander
+
+    /* ----- Turn Steps ----------------------------------------------------- */
+
     Event * getNextEvent();
+    
     std::vector<Outcome *> resolveEvent(Event * event);
+    
+    void enactOutcomes(std::vector<Outcome *> outcomes);
+    
     Report * generateReport(TerrainType terrain, ActionType action, 
                             Event * event, std::vector<Outcome *> outcomes);
 };

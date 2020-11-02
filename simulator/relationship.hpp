@@ -13,11 +13,14 @@ class Character;
 
 class Relationship {
     public:
-    Character * target;
+    Character * target; //the character towards whom the relationship is
+    Character * owner;  //the character from whom it originates
     std::vector<Justified<int>> opinions;
 
-    Relationship(Character * target);
+    Relationship(Character * owner, Character * target);
+    ~Relationship();
 
     void addOpinion(int value, std::string justification);
+    void addOpinion(Justified<int>);
     int getTotalOpinion(Character * target);
 };

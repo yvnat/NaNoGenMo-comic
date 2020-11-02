@@ -19,6 +19,5 @@ int main(int argc, char const *argv[]) {
     for (int i = 0; i < s.history.size(); ++i) {
         s.history[i]->debugPrint();
     }
-    Character c = Character();
     return 0;
 }

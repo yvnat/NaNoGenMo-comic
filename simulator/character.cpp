@@ -25,6 +25,27 @@ Character::Character() {
     PRINT("Constructed character " + name);
 }
 
+Character::~Character() {
+    for (auto const& i : relationships) {
+        delete i.second;
+    }
+    PRINT("Destroyed character " + name);
+}
+
+Relationship * Character::getRelationship(Character * character) {
+    /**
+     * Get relationship, creating one if it doesn't exist
+     * returns nullptr for own identity
+     */
+    if (character == this) {
+        return nullptr;
+    }
+    if (relationships.count(character) == 0) {
+        relationships[character] = new Relationship(this, character);
+    }
+    return relationships[character];
+}
+
 vector<string> Character::loadNamesFromFile(string filename) {
     fstream file;
 	file.open(filename, ios::in);
@@ -42,11 +63,4 @@ vector<string> Character::loadNamesFromFile(string filename) {
         file.close();   //close the file object.
     }
     return names;
-}
-
-Character::~Character() {
-    for (int i = relationships.size()-1; i >= 0; --i) {
-        delete relationships[i];
-    }
-    PRINT("Destroyed character " + name);
 }

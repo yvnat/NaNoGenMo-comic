@@ -28,6 +28,7 @@ template<class T> class Justified {
     public:
     T data;
     std::string justification;
+    Justified<T>() {};
     Justified<T>(T data, std::string justification) {
         this->data = data;
         this->justification = justification;
