@@ -3,6 +3,7 @@
 // 
 
 #include "simulator.hpp"
+#include "elaborator.hpp"
 
 #include <iostream>
 
