@@ -20,5 +20,12 @@ int main(int argc, char const *argv[]) {
     for (int i = 0; i < s.history.size(); ++i) {
         s.history[i]->debugPrint();
     }
+    Elaborator e = Elaborator();
+    PageSketch * sketch = e.elaborate(s.history[0]);
+    if (sketch != nullptr) {
+        PRINT("COUTING ELABORATION");
+        cout << sketch->toString();
+        PRINT("COUTED");
+    }
     return 0;
 }

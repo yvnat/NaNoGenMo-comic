@@ -4,9 +4,23 @@
 
 #include "pagesketch.hpp"
 
-PageSketch::PageSketch() {
+using namespace std;
 
+PageSketch::PageSketch(vector<Frame *> frames) {
+    this->frames = frames;
 }
 PageSketch::~PageSketch() {
-    
+    for (int i = 0; i < frames.size(); ++i) {
+        delete frames[i];
+    }
+}
+
+string PageSketch::toString() {
+    PRINT("");
+    string toRet = "";
+    for (int i = 0; i < frames.size(); ++i) {
+        PRINT("");
+        toRet += frames[i]->toString();
+    }
+    return toRet;
 }

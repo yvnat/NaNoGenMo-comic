@@ -4,7 +4,10 @@
 
 #pragma once
 
+#include "character.hpp"
+
 #include <string>
+#include <vector>
 
 enum EventType {
     TALK,
@@ -17,5 +20,11 @@ class Event {
 
     Event(EventType type);
 
-    std::string toString();
+    virtual std::string toString();
+};
+
+class EventTalk : public Event {
+    public:
+    std::vector<Character *> participants;
+    EventTalk(std::vector<Character *> participants);
 };

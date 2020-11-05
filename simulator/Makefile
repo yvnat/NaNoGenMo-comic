@@ -9,7 +9,7 @@ CXXFLAGS = -g
 
 ################################################################################
 
-MAIN_DEPS = relationship.o misc.o outcome.o character.o simulator.o elaborator.o event.o pagesketch.o main.o report.o 
+MAIN_DEPS = relationship.o misc.o outcome.o character.o simulator.o elaborator.o event.o pagesketch.o main.o frame.o report.o 
 main: $(MAIN_DEPS)
 	$(CXX) $(CXXFLAGS) -o bin/main.out     $(MAIN_DEPS)
 	@echo "-----------------"
@@ -27,7 +27,7 @@ simulator.o: simulator.cpp simulator.hpp report.hpp setting.hpp event.hpp \
 	$(CXX) $(CXXFLAGS) -c simulator.cpp
 elaborator.o: elaborator.cpp elaborator.hpp report.hpp setting.hpp \
  event.hpp outcome.hpp misc.hpp relationship.hpp character.hpp \
- pagesketch.hpp
+ pagesketch.hpp frame.hpp
 	$(CXX) $(CXXFLAGS) -c elaborator.cpp
 event.o: event.cpp event.hpp
 	$(CXX) $(CXXFLAGS) -c event.cpp
@@ -35,8 +35,10 @@ pagesketch.o: pagesketch.cpp pagesketch.hpp
 	$(CXX) $(CXXFLAGS) -c pagesketch.cpp
 main.o: main.cpp simulator.hpp report.hpp setting.hpp event.hpp \
  outcome.hpp misc.hpp relationship.hpp character.hpp elaborator.hpp \
- pagesketch.hpp
+ pagesketch.hpp frame.hpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
+frame.o: frame.cpp frame.hpp character.hpp relationship.hpp misc.hpp
+	$(CXX) $(CXXFLAGS) -c frame.cpp
 report.o: report.cpp report.hpp setting.hpp event.hpp outcome.hpp \
  misc.hpp relationship.hpp character.hpp
 	$(CXX) $(CXXFLAGS) -c report.cpp

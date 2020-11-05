@@ -14,3 +14,7 @@ string Event::toString() {
     string sEnum[] = {"TALK","ATTACKED"};
     return sEnum[type];
 }
+
+EventTalk::EventTalk(std::vector<Character *> participants) : Event(EventType::TALK) {
+    this->participants = participants;
+}

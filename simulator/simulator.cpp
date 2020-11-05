@@ -75,6 +75,14 @@ Event * Simulator::getNextEvent() {
     vector<EventType> options;
     options = {EventType::ATTACKED, EventType::TALK};
     EventType chosenType = rng::randElement<EventType>(options);
+    if (chosenType == EventType::TALK) {
+        Character * talker1 = rng::randElement(characters);
+        Character * talker2 = talker1;
+        while (talker2 == talker1) {
+            talker2 = rng::randElement(characters);
+        }
+        return new EventTalk({talker1, talker2});
+    }
     return new Event(chosenType);
 }
 
@@ -106,15 +114,23 @@ vector<Outcome *> Simulator::resolveEvent(Event * event) {
         }
     }
     if (event->type == EventType::TALK) {
-        if (characters.size() == 0) {
-            //this deserves special treatment
-            return outcomes;
+        //this assumes conversation involves 2 characters
+        
+        // if (characters.size() == 0) {
+        //     //this deserves special treatment
+        //     return outcomes;
+        // }
+        // Character * talker1 = rng::randElement(characters);
+        // Character * talker2 = talker1;
+        // while (talker2 == talker1) {
+        //     talker2 = rng::randElement(characters);
+        // }
+        EventTalk * talkEvent = dynamic_cast<EventTalk *>(event);
+        if (talkEvent->participants.size() < 2) {
+            PRINT("****LESS THAN 2 PARTICIPANTS");
         }
-        Character * talker1 = rng::randElement(characters);
-        Character * talker2 = talker1;
-        while (talker2 == talker1) {
-            talker2 = rng::randElement(characters);
-        }
+        Character * talker1 = talkEvent->participants[0];
+        Character * talker2 = talkEvent->participants[1];
         outcomes.push_back(new Outcome_Relationship(talker1->getRelationship(talker2), Justified<int>(10, "good chat")));
         outcomes.push_back(new Outcome_Relationship(talker2->getRelationship(talker1), Justified<int>(10, "good chat")));
     }
