@@ -267,6 +267,8 @@ def editor():
     leg_bottom_graphic = Graphic("graphics/leg_bottom.png", (8, 36));
     foot_graphic = Graphic("graphics/foot.png", (2, 60));
     head_graphic = Graphic("graphics/head.png", (74, 142));
+    shield_graphic = Graphic("graphics/shield.png", (78, 164));
+    sword_graphic = Graphic("graphics/sword_hand.png", (0, 166));
 
     # -------- limbs -------- #
 
@@ -275,7 +277,7 @@ def editor():
 
     l_arm_top = Limb(arm_top_graphic, (45, -104), None, False, (0,0), -70);
     l_arm_bottom = Limb(arm_bottom_graphic, (90, 0));
-    l_hand = Limb(hand_graphic, (76, -2));
+    l_hand = Limb(hand_graphic, (76, -2), sword_graphic);
 
     l_leg_top = Limb(leg_top_graphic, (30, 70), None, False, (0,0), -90);
     l_leg_bottom = Limb(leg_bottom_graphic, (84, 3));
@@ -283,7 +285,7 @@ def editor():
 
     r_arm_top = Limb(mirror(arm_top_graphic), (-39, -104), None, False, (0,0), 70);
     r_arm_bottom = Limb(mirror(arm_bottom_graphic), (-90, 0));
-    r_hand = Limb(mirror(hand_graphic), (-76, -2));
+    r_hand = Limb(mirror(hand_graphic), (-76, -2), shield_graphic);
 
     r_leg_top = Limb(leg_top_graphic, (-20, 70), None, False, (0,0), -90);
     r_leg_bottom = Limb(leg_bottom_graphic, (84, 3));
