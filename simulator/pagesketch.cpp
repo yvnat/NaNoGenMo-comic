@@ -16,11 +16,10 @@ PageSketch::~PageSketch() {
 }
 
 string PageSketch::toString() {
-    PRINT("");
-    string toRet = "";
+    string toRet = "## PAGE ##################\n";
     for (int i = 0; i < frames.size(); ++i) {
-        PRINT("");
         toRet += frames[i]->toString();
     }
+    toRet += "##########################\n";
     return toRet;
 }

@@ -82,7 +82,10 @@ Event * Simulator::getNextEvent() {
             talker2 = rng::randElement(characters);
         }
         return new EventTalk({talker1, talker2});
+    } else if (chosenType == EventType::ATTACKED) {
+        return new EventBattle(characters, rng::randBool(0.5));
     }
+    PRINT("***");
     return new Event(chosenType);
 }
 
@@ -92,7 +95,7 @@ vector<Outcome *> Simulator::resolveEvent(Event * event) {
      */
     vector<Outcome *> outcomes = {};
     if (event->type == EventType::ATTACKED) {
-        if (rng::randBool(0.5)) {
+        if (not dynamic_cast<EventBattle *>(event)->won) {
             outcomes.push_back(new Outcome_Supplies(-1));
             outcomes.push_back(new Outcome_Morale(-1));
             if (characters.size() > 1) {

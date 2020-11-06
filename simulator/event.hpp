@@ -28,3 +28,10 @@ class EventTalk : public Event {
     std::vector<Character *> participants;
     EventTalk(std::vector<Character *> participants);
 };
+
+class EventBattle : public Event {
+    public:
+    std::vector<Character *> participants;
+    bool won;
+    EventBattle(std::vector<Character *> participants, bool won);
+};

@@ -2,6 +2,8 @@
 // NaNoGenMo 2020 - Hoplites Comic - yvnat
 // various miscellaneous functions
 
+#define DEBUG
+
 #pragma once
 
 #include <iostream>
@@ -22,7 +24,11 @@ namespace rng {
 	std::string randomGenericName(int length);
 }
 
+#ifdef DEBUG
 #define PRINT(x) std::cout <<__FILE__<<":"<<__LINE__<<": "<<x<<"\n"
+#else
+#define PRINT(x) x
+#endif
 
 template<class T> class Justified {
     public:

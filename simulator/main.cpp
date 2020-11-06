@@ -21,11 +21,17 @@ int main(int argc, char const *argv[]) {
         s.history[i]->debugPrint();
     }
     Elaborator e = Elaborator();
-    PageSketch * sketch = e.elaborate(s.history[0]);
-    if (sketch != nullptr) {
-        PRINT("COUTING ELABORATION");
-        cout << sketch->toString();
-        PRINT("COUTED");
+    std::vector<PageSketch *> sketches = {};
+    for (int i = 0; i < s.history.size(); ++i) {
+        PageSketch * sketch = e.elaborate(s.history[i]);
+        sketches.push_back(sketch);
+    }
+    for (int i = 0; i < sketches.size(); ++i) {
+        cout << sketches[i]->toString();
+    }
+    for (int i = 0; i < sketches.size(); ++i) {
+        delete sketches[i];
+        sketches[i] = nullptr;
     }
     return 0;
 }

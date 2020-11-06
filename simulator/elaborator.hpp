@@ -24,4 +24,6 @@ class Elaborator {
     CharacterAction getNextQuestion(Character * asker, Character * answerer);
     CharacterAction answerQuestion(CharacterAction question, Character * asker, 
             Character * answerer);
+
+    PageSketch * elaborateBattle(Report * report);
 };

@@ -18,3 +18,8 @@ string Event::toString() {
 EventTalk::EventTalk(std::vector<Character *> participants) : Event(EventType::TALK) {
     this->participants = participants;
 }
+
+EventBattle::EventBattle(std::vector<Character *> participants, bool won) : Event(EventType::ATTACKED) {
+    this->participants = participants;
+    this->won = won;
+}

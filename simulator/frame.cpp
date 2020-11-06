@@ -25,13 +25,11 @@ Frame::~Frame() {
     PRINT("Destroyed frame");
 }
 string Frame::toString() {
-    PRINT("");
     string toRet = "--Frame:--\n";
     for (int i = 0; i < actions.size(); ++i) {
-        PRINT("");
-        toRet += actions[i].character->name+" ["+actions[i].pose+" ]:"
+        toRet += actions[i].character->name+" ["+actions[i].pose+"]: "
                  + actions[i].dialogue + "\n";
     }
-    toRet += "--------\n";
+    toRet += "\n";
     return toRet;
 }
