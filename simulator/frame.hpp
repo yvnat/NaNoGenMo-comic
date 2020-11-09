@@ -41,16 +41,31 @@ class CharacterAction {
     CharacterActionPosition position;
 };
 
+class FrameBackground {
+    /**
+     * The background of a frame.
+     * Currently encodes the colours of the sky and ground, and the horizon's y.
+     */
+    public:
+    std::vector<int> skyColour; 
+    std::vector<int> groundColour;
+    double horizonHeight;            //in frame %
+    FrameBackground(std::vector<int> skyColour, std::vector<int> groundColour,
+            double horizonHeight);
+    FrameBackground();
+    ~FrameBackground();
+};
+
 class Frame {
     /**
      * A single frame of the comic
      */
     public:
-    Frame(std::vector<CharacterAction> actions);
+    Frame(std::vector<CharacterAction> actions, FrameBackground background=FrameBackground({77,195,255}, {100,200,0}, .5));
     ~Frame();
 
     double sizeX, sizeY;        //size, in SFU
-
+    FrameBackground background;
     std::vector<CharacterAction> actions;
 
     std::string toString();

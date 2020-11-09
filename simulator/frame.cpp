@@ -30,9 +30,22 @@ CharacterAction::~CharacterAction() {
 
 }
 
-Frame::Frame(std::vector<CharacterAction> actions) {
+FrameBackground::FrameBackground(std::vector<int> skyColour, 
+        std::vector<int> groundColour, double horizonHeight) {
+    this->skyColour = skyColour;
+    this->groundColour = groundColour;
+    this->horizonHeight= horizonHeight;
+}
+FrameBackground::FrameBackground() {};
+
+FrameBackground::~FrameBackground() {}
+
+Frame::Frame(std::vector<CharacterAction> actions, FrameBackground background) {
     PRINT("Constructed frame");
     this->actions = actions;
+    this->sizeX = 1;
+    this->sizeY = 1;
+    this->background = background;
 }
 Frame::~Frame() {
     PRINT("Destroyed frame");
