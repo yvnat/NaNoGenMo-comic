@@ -7,18 +7,24 @@
 
 using namespace std;
 
+CharacterActionPosition::CharacterActionPosition(double positionX, 
+        double positionY, double size, bool direction) {
+    this->positionX = positionX;
+    this->positionY = positionY;
+    this->size = size;
+    this->direction = direction;
+}
+CharacterActionPosition::CharacterActionPosition() {}
+CharacterActionPosition::~CharacterActionPosition() {}
+
 CharacterAction::CharacterAction(Character * character, std::string pose, 
-        std::string dialogue, double positionX, double positionY, double size, 
-        bool direction) {
+        std::string dialogue, CharacterActionPosition position) {
     this->character = character;
     this->appearance = character->appearance;
     this->pose = pose;
     this->dialogue = dialogue;
 
-    this->positionX = positionX;
-    this->positionY = positionY;
-    this->size = size;
-    this->direction = direction;
+    this->position = position;
 }
 CharacterAction::~CharacterAction() {
 

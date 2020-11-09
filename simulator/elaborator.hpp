@@ -26,4 +26,9 @@ class Elaborator {
             Character * answerer);
 
     PageSketch * elaborateBattle(Report * report);
+
+    private:
+    /* --- frame templates --- */
+    Frame * t_facing(CharacterAction left, CharacterAction right);
+    Frame * t_1char(CharacterAction character, bool direction=DIRECTION_RIGHT);
 };

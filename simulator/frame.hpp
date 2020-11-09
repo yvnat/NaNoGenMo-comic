@@ -12,14 +12,25 @@
 #define DIRECTION_RIGHT true
 #define DIRECTION_LEFT false
 
+class CharacterActionPosition {
+    public:
+    double positionX, positionY;    //position, in % of frame dimensions
+    double size;                    //size, in SFU (1 SFU = 1 normal frame size)
+    bool direction;                 //true = right facing, false = left facing
+
+    CharacterActionPosition(double positionX, double positionY, double size, 
+        bool direction);
+    CharacterActionPosition();
+    ~CharacterActionPosition();
+};
+
 class CharacterAction {
     /**
      * Represents a character's pose and dialogue
      */
     public:
     CharacterAction(Character * character, std::string pose, 
-        std::string dialogue, double positionX, double positionY, double size, 
-        bool direction);
+        std::string dialogue, CharacterActionPosition position);
     ~CharacterAction();
 
     Character * character;
@@ -27,9 +38,7 @@ class CharacterAction {
     std::string pose;           //path to pose file
     std::string dialogue;       //the line of dialogue this character says
 
-    double positionX, positionY;    //position, in % of frame dimensions
-    double size;                    //size, in SFU (1 SFU = 1 normal frame size)
-    bool direction;                 //true = right facing, false = left facing
+    CharacterActionPosition position;
 };
 
 class Frame {

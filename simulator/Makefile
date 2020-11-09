@@ -23,24 +23,25 @@ outcome.o: outcome.cpp outcome.hpp misc.hpp relationship.hpp \
 character.o: character.cpp character.hpp relationship.hpp misc.hpp
 	$(CXX) $(CXXFLAGS) -c character.cpp
 simulator.o: simulator.cpp simulator.hpp report.hpp setting.hpp event.hpp \
- outcome.hpp misc.hpp relationship.hpp character.hpp
+ character.hpp relationship.hpp misc.hpp outcome.hpp
 	$(CXX) $(CXXFLAGS) -c simulator.cpp
 elaborator.o: elaborator.cpp elaborator.hpp report.hpp setting.hpp \
- event.hpp outcome.hpp misc.hpp relationship.hpp character.hpp \
+ event.hpp character.hpp relationship.hpp misc.hpp outcome.hpp \
  pagesketch.hpp frame.hpp
 	$(CXX) $(CXXFLAGS) -c elaborator.cpp
-event.o: event.cpp event.hpp
+event.o: event.cpp event.hpp character.hpp relationship.hpp misc.hpp
 	$(CXX) $(CXXFLAGS) -c event.cpp
-pagesketch.o: pagesketch.cpp pagesketch.hpp
+pagesketch.o: pagesketch.cpp pagesketch.hpp frame.hpp character.hpp \
+ relationship.hpp misc.hpp
 	$(CXX) $(CXXFLAGS) -c pagesketch.cpp
 main.o: main.cpp simulator.hpp report.hpp setting.hpp event.hpp \
- outcome.hpp misc.hpp relationship.hpp character.hpp elaborator.hpp \
+ character.hpp relationship.hpp misc.hpp outcome.hpp elaborator.hpp \
  pagesketch.hpp frame.hpp
 	$(CXX) $(CXXFLAGS) -c main.cpp
 frame.o: frame.cpp frame.hpp character.hpp relationship.hpp misc.hpp
 	$(CXX) $(CXXFLAGS) -c frame.cpp
-report.o: report.cpp report.hpp setting.hpp event.hpp outcome.hpp \
- misc.hpp relationship.hpp character.hpp
+report.o: report.cpp report.hpp setting.hpp event.hpp character.hpp \
+ relationship.hpp misc.hpp outcome.hpp
 	$(CXX) $(CXXFLAGS) -c report.cpp
 
 ################################################################################

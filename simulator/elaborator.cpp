@@ -42,10 +42,8 @@ PageSketch * Elaborator::elaborateTalk(Report * report) {
 
         CharacterAction question = getNextQuestion(event->participants[0], event->participants[1]);
         CharacterAction answer = answerQuestion(question, event->participants[0], event->participants[1]);
-        actions.push_back(question);
-        actions.push_back(answer);
 
-        Frame * frame = new Frame(actions);
+        Frame * frame = t_facing(question, answer);
         frames.push_back(frame);
         framesNeeded = desiredFrames - frames.size();
     }
@@ -54,11 +52,11 @@ PageSketch * Elaborator::elaborateTalk(Report * report) {
 
 CharacterAction Elaborator::getNextQuestion(Character * asker, 
         Character * answerer) {
-    return CharacterAction(asker, "question", "?");
+    return CharacterAction(asker, "question", "?", {});
 }
 CharacterAction Elaborator::answerQuestion(CharacterAction question, Character * asker, 
         Character * answerer) {
-    return CharacterAction(answerer, "explaining2", "!");
+    return CharacterAction(answerer, "explaining2", "!", {});
 }
 
 PageSketch * Elaborator::elaborateBattle(Report * report) {
@@ -68,8 +66,7 @@ PageSketch * Elaborator::elaborateBattle(Report * report) {
     EventBattle * event = dynamic_cast<EventBattle *>(report->event);
 
     while (framesNeeded > 0) {
-        vector<CharacterAction> actions = {};
-
+        Frame * frame = nullptr;
         if (framesNeeded == 1) {
             string dialogue = "***";
             if (event->won) {
@@ -77,13 +74,31 @@ PageSketch * Elaborator::elaborateBattle(Report * report) {
             } else {
                 dialogue = "We lost much supply in this raid oh no";
             }
-            actions.push_back(CharacterAction(event->participants[0], "stand", dialogue));
+            frame = t_1char(CharacterAction(event->participants[0], "stand", dialogue, {}));
         } else {
-            actions.push_back(CharacterAction(rng::randElement(event->participants), "strike", ""));
+            frame = t_1char(CharacterAction(rng::randElement(event->participants), "strike", "", {}));
         }
-        frames.push_back(new Frame(actions));
+        frames.push_back(frame);
         framesNeeded = desiredFrames - frames.size();
     }
 
     return new PageSketch(frames);
+}
+
+Frame * Elaborator::t_facing(CharacterAction left, CharacterAction right) {
+    /**
+     * Creates a frame with two characters facing each other.
+     * This resets the characters' positions.
+     */
+    left.position = CharacterActionPosition(.2, .5, .5, DIRECTION_RIGHT);
+    right.position = CharacterActionPosition(.8, .5, .5, DIRECTION_LEFT);
+    return new Frame({left, right});
+}
+
+Frame * Elaborator::t_1char(CharacterAction character, bool direction) {
+    /**
+     * A frame showing 1 character in the middle
+     */
+    character.position = CharacterActionPosition(.5, .5, .8, direction);
+    return new Frame({character});
 }
