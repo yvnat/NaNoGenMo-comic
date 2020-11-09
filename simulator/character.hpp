@@ -12,8 +12,17 @@
 
 class Relationship;
 
+class CharacterAppearance {
+    public:
+    //a class that will eventually contain information related to the current
+    //appearance of a character; boilerplate for now
+    CharacterAppearance();
+    ~CharacterAppearance();
+};
+
 class Character {
     public:
+    CharacterAppearance appearance;
     std::string name;
     std::unordered_map<Character *, Relationship *> relationships;
 

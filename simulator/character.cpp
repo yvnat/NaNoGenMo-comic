@@ -10,8 +10,16 @@
 
 using namespace std;
 
+CharacterAppearance::CharacterAppearance() {
+
+}
+CharacterAppearance::~CharacterAppearance() {
+    
+}
+
 Character::Character() {
     this->relationships = {};
+    this->appearance = CharacterAppearance();
     
     vector<string> loaded_names = loadNamesFromFile("data/greek_names.txt");
     string chosen_name;

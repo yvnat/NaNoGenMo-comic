@@ -8,10 +8,17 @@
 using namespace std;
 
 CharacterAction::CharacterAction(Character * character, std::string pose, 
-        std::string dialogue) {
+        std::string dialogue, double positionX, double positionY, double size, 
+        bool direction) {
     this->character = character;
+    this->appearance = character->appearance;
     this->pose = pose;
     this->dialogue = dialogue;
+
+    this->positionX = positionX;
+    this->positionY = positionY;
+    this->size = size;
+    this->direction = direction;
 }
 CharacterAction::~CharacterAction() {
 
