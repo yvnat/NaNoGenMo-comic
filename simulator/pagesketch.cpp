@@ -25,12 +25,12 @@ string PageSketch::toString() {
 }
 
 string PageSketch::serialize() {
-    string serialized = "["
+    string serialized = "[";
     for (int i = 0; i < frames.size(); ++i) {
         if (i != 0) {
             serialized += ", ";
         }
-        serialized += frames[i].serialize();
+        serialized += frames[i]->serialize();
     }
     serialized += "]";
     return serialized;

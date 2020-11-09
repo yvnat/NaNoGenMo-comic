@@ -16,6 +16,9 @@ class CharacterAppearance {
     public:
     //a class that will eventually contain information related to the current
     //appearance of a character; boilerplate for now
+    bool isArmed;
+    std::vector<int> colour;
+    CharacterAppearance(bool isArmed, std::vector<int> colour);
     CharacterAppearance();
     ~CharacterAppearance();
 

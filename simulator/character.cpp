@@ -10,20 +10,28 @@
 
 using namespace std;
 
+CharacterAppearance::CharacterAppearance(bool isArmed, vector<int> colour) {
+    this->isArmed = isArmed;
+    this->colour = colour;
+}
 CharacterAppearance::CharacterAppearance() {
-
+    CharacterAppearance(true, {255, 255, 255});
 }
 CharacterAppearance::~CharacterAppearance() {
     
 }
 
 string CharacterAppearance::serialize() {
-    return "[]";
+    return "["+to_string(isArmed)+", ["
+            +to_string(colour[0])+", "
+            +to_string(colour[1])+", "
+            +to_string(colour[2])+
+            +"]]";
 }
 
 Character::Character() {
     this->relationships = {};
-    this->appearance = CharacterAppearance();
+    this->appearance = CharacterAppearance(true, {rng::randInt(128, 255), rng::randInt(128, 255), rng::randInt(128, 255)});
     
     vector<string> loaded_names = loadNamesFromFile("data/greek_names.txt");
     string chosen_name;
