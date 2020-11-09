@@ -15,5 +15,6 @@ class PageSketch {
     PageSketch(std::vector<Frame *> frames);
     ~PageSketch();
 
+    std::string serialize();
     std::string toString();
 };

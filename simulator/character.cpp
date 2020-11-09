@@ -17,6 +17,10 @@ CharacterAppearance::~CharacterAppearance() {
     
 }
 
+string CharacterAppearance::serialize() {
+    return "[]";
+}
+
 Character::Character() {
     this->relationships = {};
     this->appearance = CharacterAppearance();

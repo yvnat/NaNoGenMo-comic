@@ -18,6 +18,8 @@ class CharacterAppearance {
     //appearance of a character; boilerplate for now
     CharacterAppearance();
     ~CharacterAppearance();
+
+    std::string serialize();
 };
 
 class Character {

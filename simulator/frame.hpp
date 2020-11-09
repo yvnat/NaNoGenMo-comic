@@ -22,6 +22,7 @@ class CharacterActionPosition {
         bool direction);
     CharacterActionPosition();
     ~CharacterActionPosition();
+    std::string serialize();
 };
 
 class CharacterAction {
@@ -39,6 +40,8 @@ class CharacterAction {
     std::string dialogue;       //the line of dialogue this character says
 
     CharacterActionPosition position;
+
+    std::string serialize();
 };
 
 class FrameBackground {
@@ -54,6 +57,8 @@ class FrameBackground {
             double horizonHeight);
     FrameBackground();
     ~FrameBackground();
+
+    std::string serialize();
 };
 
 class Frame {
@@ -61,12 +66,14 @@ class Frame {
      * A single frame of the comic
      */
     public:
-    Frame(std::vector<CharacterAction> actions, FrameBackground background=FrameBackground({77,195,255}, {100,200,0}, .5));
+    Frame(std::vector<CharacterAction> actions, FrameBackground background
+            =FrameBackground({77,195,255}, {100,200,0}, .5));
     ~Frame();
 
     double sizeX, sizeY;        //size, in SFU
     FrameBackground background;
     std::vector<CharacterAction> actions;
 
+    std::string serialize();
     std::string toString();
 };
