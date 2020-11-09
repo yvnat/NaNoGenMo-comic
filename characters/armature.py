@@ -8,6 +8,9 @@ import math
 import pygame
 import time
 import json
+import sys
+import os
+
 ###############################################################################
 SCREEN_X = 660
 SCREEN_Y = 660
@@ -232,18 +235,18 @@ class Body:
     def save_pose(self, filepath):
         pose = self.body.save_pose();
         pose_string = json.dumps(pose)
-        file = open("poses/"+filepath+".json", "w");
+        file = open(dir+"poses/"+filepath+".json", "w");
         file.write(pose_string);
         file.close();
-        print("Saved ","poses/"+filepath+".json")
+        print("Saved ",dir+"poses/"+filepath+".json")
 
     def load_pose(self, filepath):
         try:
-            file = open("poses/"+filepath+".json", "r");
+            file = open(dir+"poses/"+filepath+".json", "r");
             json_string = file.read();
             file.close();
         except FileNotFoundError:
-            print("No such file", "poses/"+filepath+".json");
+            print("No such file", dir+"poses/"+filepath+".json");
             return;
         pose = json.loads(json_string);
         self.body.load_pose(pose);
@@ -253,68 +256,69 @@ class Body:
 ################################################################################
 ################################################################################
 
+# -------- graphics -------- #
+# taken from 
+# https://commons.wikimedia.org/wiki/
+#   File:Greek_soldiers_of_Greco%E2%80%93Persian_Wars.png
+dir = os.path.dirname(os.path.realpath(sys.argv[0]))+"/";
+torso_graphic = Graphic(dir+"graphics/torso.png", (52, 174));
+arm_top_graphic = Graphic(dir+"graphics/arm_top.png", (19, 30));
+arm_bottom_graphic = Graphic(dir+"graphics/arm_bottom.png", (7, 22));
+hand_graphic = Graphic(dir+"graphics/hand.png", (5, 16));
+leg_top_graphic = Graphic(dir+"graphics/leg_top.png", (8, 32));
+leg_bottom_graphic = Graphic(dir+"graphics/leg_bottom.png", (8, 36));
+foot_graphic = Graphic(dir+"graphics/foot.png", (2, 60));
+head_graphic = Graphic(dir+"graphics/head.png", (74, 142));
+shield_graphic = Graphic(dir+"graphics/shield.png", (78, 164));
+sword_graphic = Graphic(dir+"graphics/sword_hand.png", (0, 166));
+
+# -------- limbs -------- #
+
+head = Limb(head_graphic, (-3, -140), None, True);
+torso = Limb(torso_graphic, None, None, False);
+
+l_arm_top = Limb(arm_top_graphic, (45, -104), None, False, (0,0), -70);
+l_arm_bottom = Limb(arm_bottom_graphic, (90, 0));
+l_hand = Limb(hand_graphic, (76, -2), sword_graphic);   #armed
+# l_hand = Limb(hand_graphic, (76, -2));                  #unarmed
+
+l_leg_top = Limb(leg_top_graphic, (30, 70), None, False, (0,0), -90);
+l_leg_bottom = Limb(leg_bottom_graphic, (84, 3));
+l_foot = Limb(foot_graphic, (125, -8));
+
+r_arm_top = Limb(mirror(arm_top_graphic), (-39, -104), None, False, (0,0), 70);
+r_arm_bottom = Limb(mirror(arm_bottom_graphic), (-90, 0));
+r_hand = Limb(mirror(hand_graphic), (-76, -2), shield_graphic);     #shield
+# r_hand = Limb(mirror(hand_graphic), (-76, -2));                     #bare
+
+r_leg_top = Limb(leg_top_graphic, (-20, 70), None, False, (0,0), -90);
+r_leg_bottom = Limb(leg_bottom_graphic, (84, 3));
+r_foot = Limb(foot_graphic, (125, -8));
+
+# -------- assembly -------- #
+
+torso.add_child(head);
+
+torso.add_child(l_arm_top);
+l_arm_top.add_child(l_arm_bottom);
+l_arm_bottom.add_child(l_hand);
+
+torso.add_child(r_arm_top);
+r_arm_top.add_child(r_arm_bottom);
+r_arm_bottom.add_child(r_hand);
+
+torso.add_child(l_leg_top);
+l_leg_top.add_child(l_leg_bottom);
+l_leg_bottom.add_child(l_foot);
+
+torso.add_child(r_leg_top);
+r_leg_top.add_child(r_leg_bottom);
+r_leg_bottom.add_child(r_foot);
+
+body = Body(torso, (330, 330));
+
 def editor():
     """A quick and dirty graphical pose editor"""
-    # -------- graphics -------- #
-    # taken from 
-    # https://commons.wikimedia.org/wiki/
-    #   File:Greek_soldiers_of_Greco%E2%80%93Persian_Wars.png
-    torso_graphic = Graphic("graphics/torso.png", (52, 174));
-    arm_top_graphic = Graphic("graphics/arm_top.png", (19, 30));
-    arm_bottom_graphic = Graphic("graphics/arm_bottom.png", (7, 22));
-    hand_graphic = Graphic("graphics/hand.png", (5, 16));
-    leg_top_graphic = Graphic("graphics/leg_top.png", (8, 32));
-    leg_bottom_graphic = Graphic("graphics/leg_bottom.png", (8, 36));
-    foot_graphic = Graphic("graphics/foot.png", (2, 60));
-    head_graphic = Graphic("graphics/head.png", (74, 142));
-    shield_graphic = Graphic("graphics/shield.png", (78, 164));
-    sword_graphic = Graphic("graphics/sword_hand.png", (0, 166));
-
-    # -------- limbs -------- #
-
-    head = Limb(head_graphic, (-3, -140), None, True);
-    torso = Limb(torso_graphic, None, None, False);
-
-    l_arm_top = Limb(arm_top_graphic, (45, -104), None, False, (0,0), -70);
-    l_arm_bottom = Limb(arm_bottom_graphic, (90, 0));
-    l_hand = Limb(hand_graphic, (76, -2), sword_graphic);   #armed
-    # l_hand = Limb(hand_graphic, (76, -2));                  #unarmed
-
-    l_leg_top = Limb(leg_top_graphic, (30, 70), None, False, (0,0), -90);
-    l_leg_bottom = Limb(leg_bottom_graphic, (84, 3));
-    l_foot = Limb(foot_graphic, (125, -8));
-
-    r_arm_top = Limb(mirror(arm_top_graphic), (-39, -104), None, False, (0,0), 70);
-    r_arm_bottom = Limb(mirror(arm_bottom_graphic), (-90, 0));
-    r_hand = Limb(mirror(hand_graphic), (-76, -2), shield_graphic);     #shield
-    # r_hand = Limb(mirror(hand_graphic), (-76, -2));                     #bare
-
-    r_leg_top = Limb(leg_top_graphic, (-20, 70), None, False, (0,0), -90);
-    r_leg_bottom = Limb(leg_bottom_graphic, (84, 3));
-    r_foot = Limb(foot_graphic, (125, -8));
-
-    # -------- assembly -------- #
-
-    torso.add_child(head);
-
-    torso.add_child(l_arm_top);
-    l_arm_top.add_child(l_arm_bottom);
-    l_arm_bottom.add_child(l_hand);
-
-    torso.add_child(r_arm_top);
-    r_arm_top.add_child(r_arm_bottom);
-    r_arm_bottom.add_child(r_hand);
-
-    torso.add_child(l_leg_top);
-    l_leg_top.add_child(l_leg_bottom);
-    l_leg_bottom.add_child(l_foot);
-
-    torso.add_child(r_leg_top);
-    r_leg_top.add_child(r_leg_bottom);
-    r_leg_bottom.add_child(r_foot);
-
-    body = Body(torso, (330, 330));
-
     # -------- poser -------- #
 
     step = 0;
@@ -417,7 +421,18 @@ def editor():
         pygame.display.flip();
         time.sleep(0.01)
 
-editor();
+def pose_to_png(pose):
+    screen.fill((255, 0, 255));
+    body.load_pose(pose);
+    body.update();
+    body.draw();
+    pygame.display.flip();
+    if not os.path.isdir("output"):
+        os.mkdir("output");
+    pygame.image.save(screen, dir+"output/"+pose+".png")
+
+# editor();
+pose_to_png(sys.argv[1]);
 
 ################################################################################
 ################################################################################
