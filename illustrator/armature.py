@@ -261,16 +261,16 @@ class Body:
 # https://commons.wikimedia.org/wiki/
 #   File:Greek_soldiers_of_Greco%E2%80%93Persian_Wars.png
 dir = os.path.dirname(os.path.realpath(sys.argv[0]))+"/";
-torso_graphic = Graphic(dir+"graphics/torso.png", (52, 174));
-arm_top_graphic = Graphic(dir+"graphics/arm_top.png", (19, 30));
-arm_bottom_graphic = Graphic(dir+"graphics/arm_bottom.png", (7, 22));
-hand_graphic = Graphic(dir+"graphics/hand.png", (5, 16));
-leg_top_graphic = Graphic(dir+"graphics/leg_top.png", (8, 32));
-leg_bottom_graphic = Graphic(dir+"graphics/leg_bottom.png", (8, 36));
-foot_graphic = Graphic(dir+"graphics/foot.png", (2, 60));
-head_graphic = Graphic(dir+"graphics/head.png", (74, 142));
-shield_graphic = Graphic(dir+"graphics/shield.png", (78, 164));
-sword_graphic = Graphic(dir+"graphics/sword_hand.png", (0, 166));
+torso_graphic = Graphic(dir+"graphics/torso.png", (52, 174), (225, 170 ,150));
+arm_top_graphic = Graphic(dir+"graphics/arm_top.png", (19, 30), (225, 170 ,150));
+arm_bottom_graphic = Graphic(dir+"graphics/arm_bottom.png", (7, 22), (225, 170 ,150));
+hand_graphic = Graphic(dir+"graphics/hand.png", (5, 16), (225, 170 ,150));
+leg_top_graphic = Graphic(dir+"graphics/leg_top.png", (8, 32), (225, 170 ,150));
+leg_bottom_graphic = Graphic(dir+"graphics/leg_bottom.png", (8, 36), (225, 170 ,150));
+foot_graphic = Graphic(dir+"graphics/foot.png", (2, 60), (225, 170 ,150));
+head_graphic = Graphic(dir+"graphics/head.png", (74, 142), (225, 170 ,150));
+shield_graphic = Graphic(dir+"graphics/shield.png", (78, 164), (225, 170 ,150));
+sword_graphic = Graphic(dir+"graphics/sword_hand.png", (0, 166), (225, 170 ,150));
 
 # -------- limbs -------- #
 
@@ -431,8 +431,8 @@ def pose_to_png(pose):
         os.mkdir("output");
     pygame.image.save(screen, dir+"output/"+pose+".png")
 
-# editor();
-pose_to_png(sys.argv[1]);
+editor();
+# pose_to_png(sys.argv[1]);
 
 ################################################################################
 ################################################################################

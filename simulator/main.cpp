@@ -30,6 +30,9 @@ int main(int argc, char const *argv[]) {
         cout << sketches[i]->toString();
     }
     for (int i = 0; i < sketches.size(); ++i) {
+        cout << sketches[i]->serialize() << "\n";
+    }
+    for (int i = 0; i < sketches.size(); ++i) {
         delete sketches[i];
         sketches[i] = nullptr;
     }
