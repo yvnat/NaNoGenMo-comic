@@ -15,6 +15,6 @@ Current Progress:
 
 | Simulator | Elaborator | Illustrator |
 | --- | --- | --- |
-| Basic Implementation | Basic Implementation | Only Poses |
+| Basic Implementation | Basic Implementation | Partial Implementation |
 
 A basic implementation is necessary for all parts of the program to create a preliminary comic page.

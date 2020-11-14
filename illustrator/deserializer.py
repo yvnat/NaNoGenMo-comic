@@ -7,6 +7,8 @@ import os
 import sys
 
 ################################################################################
+# The python classes
+################################################################################
 
 class PageSketch:
     def __init__(self, array):
@@ -21,7 +23,7 @@ class Frame:
         self.background = FrameBackground(array[3]);
         self.actions = [];
         for i in array[2]:
-            self.actions.append(FrameBackground(i));
+            self.actions.append(CharacterAction(i));
 
 class FrameBackground:
     def __init__(self, array):
@@ -48,6 +50,8 @@ class CharacterAppearance:
         self.isArmed = array[0];
         self.colour = array[1];
 
+################################################################################
+# deserialization functions
 ################################################################################
 
 def deserialize_sketch_string(sketch):
