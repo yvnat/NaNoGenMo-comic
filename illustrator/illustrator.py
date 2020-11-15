@@ -420,11 +420,23 @@ def draw_dialogue(action, frame_size):
 ################################################################################
 
 sketches = deserializer.deserialize_sketches_file("test.txt");
-for sketch in sketches:
-    for frame in sketch.frames:
+try:
+    os.mkdir("pages/");
+except FileExistsError:
+    pass;
+for i in range(len(sketches)):
+    try:
+        os.mkdir("pages/"+str(i));
+    except FileExistsError:
+        pass;
+    print("Page", i);
+    sketch = sketches[i]
+    for j in range(len(sketch.frames)):
+        frame = sketch.frames[j];
         draw_frame(frame)
-        pygame.display.flip();
-        a = input()
+        # pygame.display.flip();
+        # a = input()
+        pygame.image.save(screen, dir+"pages/"+str(i)+"/"+str(j)+".png");
 
 ################################################################################
 pygame.font.quit()
