@@ -2,7 +2,7 @@
 // NaNoGenMo 2020 - Hoplites Comic - yvnat
 // various miscellaneous functions
 
-#define DEBUG
+// #define DEBUG
 
 #pragma once
 

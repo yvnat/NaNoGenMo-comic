@@ -1,0 +1,5 @@
+#!/bin/bash
+./simulator/bin/main.out | python3 ./illustrator/illustrator.py;
+python3 ./illustrator/binder.py
+rm -rf ./pages
+mv ./illustrator/pages ./

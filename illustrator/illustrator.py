@@ -2,6 +2,11 @@
 # NaNoGenMo 2020 - Hoplites Comic - yvnat
 # illustrates a PageSketch
 
+"""
+USAGE INSTRUCTIONS:
+pipe the serialized PageSketches (output of elaborator) to this program
+"""
+
 import deserializer
 
 ################################################################################
@@ -419,14 +424,20 @@ def draw_dialogue(action, frame_size):
 
 ################################################################################
 
-sketches = deserializer.deserialize_sketches_file("test.txt");
+piped_input = sys.stdin.readlines();
+sketches = [];
+for i in piped_input:
+    if i[0] == "[":
+        sketches.append(deserializer.deserialize_sketch_string(i));
 try:
-    os.mkdir("pages/");
+    os.mkdir(dir+"pages/");
+    print("made", dir+"pages/");
 except FileExistsError:
     pass;
 for i in range(len(sketches)):
     try:
-        os.mkdir("pages/"+str(i));
+        os.mkdir(dir+"pages/"+str(i));
+        print("made", dir+"pages/"+str(i));
     except FileExistsError:
         pass;
     print("Page", i);
@@ -437,6 +448,7 @@ for i in range(len(sketches)):
         # pygame.display.flip();
         # a = input()
         pygame.image.save(screen, dir+"pages/"+str(i)+"/"+str(j)+".png");
+        print("saved", dir+"pages/"+str(i)+"/"+str(j)+".png")
 
 ################################################################################
 pygame.font.quit()
