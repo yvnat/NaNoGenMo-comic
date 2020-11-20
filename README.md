@@ -1,11 +1,10 @@
 # NaNoGenMo Hoplites Comic
 
-
-![poses](https://user-images.githubusercontent.com/44072408/98249033-c5fe9d80-1f43-11eb-996b-8c2c46cf1f91.png)
-
-*Hoplites in two poses*
+**Sample Output: https://yvnat.github.io/NaNoGenMo-comic/pages/0/page.html**
 
 ---
+
+![poses](https://user-images.githubusercontent.com/44072408/98249033-c5fe9d80-1f43-11eb-996b-8c2c46cf1f91.png)
 
 The final goal of this project is to generate a readable comic with a premise loosly based on Xenophon's Anabasis.
 
@@ -15,6 +14,6 @@ Current Progress:
 
 | Simulator | Elaborator | Illustrator |
 | --- | --- | --- |
-| Basic Implementation | Basic Implementation | Partial Implementation |
+| Basic Implementation | Basic Implementation | Basic Implementation |
 
-A basic implementation is necessary for all parts of the program to create a preliminary comic page.
+A basic implementation is necessary for all parts of the program to create a preliminary comic page. This has been achieved, and now the focus lies on moving the systems from boilerplates to meaningful code.
